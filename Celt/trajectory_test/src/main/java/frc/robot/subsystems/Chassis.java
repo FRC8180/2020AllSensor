@@ -15,15 +15,19 @@ import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 import frc.robot.Constants.ChassisConstants;
 
 public class Chassis extends SubsystemBase {
+  // Create differential drive
   private final SpeedControllerGroup m_Motor_L = new SpeedControllerGroup(new PWMVictorSPX(ChassisConstants.Motor_LA), new PWMVictorSPX(ChassisConstants.Motor_LB));
   private final SpeedControllerGroup m_Motor_R = new SpeedControllerGroup(new PWMVictorSPX(ChassisConstants.Motor_RA), new PWMVictorSPX(ChassisConstants.Motor_RB));
   private final DifferentialDrive m_drive = new DifferentialDrive(m_Motor_L, m_Motor_R);
   
+  // Encoders
   private final Encoder m_Encoder_L = new Encoder(ChassisConstants.Encoder_L[0], ChassisConstants.Encoder_L[1], ChassisConstants.Encoder_L_Reversed);
   private final Encoder m_Encoder_R = new Encoder(ChassisConstants.Encoder_R[0], ChassisConstants.Encoder_R[1], ChassisConstants.Encoder_R_Reversed);
 
+  // Gyro
   private final Gyro m_gyro = new ADXRS450_Gyro();
 
+  // 追蹤車體的位置和姿態
   private final DifferentialDriveOdometry m_odometry;
 
   public Chassis() {

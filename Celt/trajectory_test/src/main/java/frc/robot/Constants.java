@@ -25,7 +25,7 @@ public final class Constants {
         // ***PID values
         public final static double Kp = 0.05;
         public final static double Ki = 0;
-        public final static double Kd = 5000;
+        public final static double Kd = 100;
 
         // Encoders
         public final static int[] Encoder_L = new int[]{0, 1};
@@ -44,10 +44,11 @@ public final class Constants {
     }
 
     public static final class AutoConstants{
+        // unit: meters
         public static final double MaxSpeed = 3;
         public static final double MaxAccel = 3;
 
-        // Reasonable baseline values for a RAMSETE follower in units of meters and seconds
+        // Reasonable baseline values
         public static final double Ramsete_B = 2;
         public static final double Ramsete_Zeta = 0.7;
     }
