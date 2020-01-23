@@ -65,10 +65,10 @@ public class Robot extends TimedRobot {
    * Note: Any example colors should be calibrated as the user needs, these
    * are here as a basic example.
    */
-  private final Color kBlueTarget = ColorMatch.makeColor(0.219, 0.465, 0.315);// 143 427 429
-  private final Color kGreenTarget = ColorMatch.makeColor(0.236, 0.483, 0.280);//197 561 240
-  private final Color kRedTarget = ColorMatch.makeColor(0.269, 0.463, 0.265);// 561 232 114
-  private final Color kYellowTarget = ColorMatch.makeColor(0.276, 0.489, 0.233);//361 524 113
+  private final Color kBlueTarget = ColorMatch.makeColor(0.143, 0.427, 0.429);   // Adjust parameters by distance
+  private final Color kGreenTarget = ColorMatch.makeColor(0.197, 0.561, 0.240);  
+  private final Color kRedTarget = ColorMatch.makeColor(0.531, 0.335, 0.124);   
+  private final Color kYellowTarget = ColorMatch.makeColor(0.320, 0.542, 0.133); 
 
   @Override
   public void robotInit() {
@@ -183,13 +183,13 @@ public class Robot extends TimedRobot {
           colorString = "Unknown";
         }
         Motor_spiinner.set(motorSpeed);
-        if(colorString != target){
+        if(colorString != target && match.confidence > 0.97){
+          counter++;
           SmartDashboard.putNumber("Red", detectedColor.red);
           SmartDashboard.putNumber("Green", detectedColor.green);
           SmartDashboard.putNumber("Blue", detectedColor.blue);
           SmartDashboard.putNumber("Confidence", match.confidence);
           SmartDashboard.putString("Detected Color", colorString);
-          counter++;
           SmartDashboard.putNumber("counter",counter);
           detectedColor = m_colorSensor.getColor();
           match = m_colorMatcher.matchClosestColor(detectedColor);
